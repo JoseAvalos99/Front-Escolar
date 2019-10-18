@@ -1,0 +1,35 @@
+<h1>User</h1>
+<div class="form-group">
+    <form [formGroup]="UserForm" (ngSubmit)="onSaveForm()">
+        <div class="form-group">
+            <input type="text" formControlName="Name" placeholder="Your Name" class="form-control" >
+            <div class="alert alert-danger" role="alert" *ngIf="name.invalid && (name.dirty || name.touched) ">
+                The name is required
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="LastName" placeholder="Your LastName" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="NickName" placeholder="Your NickName" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="number" formControlName="YearsOld" class="form-control" placeholder="Your age">
+        </div>
+        <div class="form-group">
+            <select formControlName="Gender" class="form-control" multiple>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Non Binary</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="PhoneNumber" placeholder="Your PhoneNumber" class="form-control">
+
+        </div>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+
+    </form>
+</div>
