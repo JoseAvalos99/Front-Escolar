@@ -9,6 +9,7 @@ import { UserComponent } from './Components/WebApp/user/user.component';
 
 import { HttpClientModule } from "@angular/common/http";
 import { UserListComponent } from './Components/WebApp/user-list/user-list.component';
+import { UserService } from './Services/user.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { UserListComponent } from './Components/WebApp/user-list/user-list.compo
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

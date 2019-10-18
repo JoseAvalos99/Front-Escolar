@@ -10,12 +10,16 @@ import { IUser } from 'src/app/Model/user.interface';
 })
 export class UserListComponent implements OnInit {
 
-	public userList = [];
+	public userList: IUser[] = [];
 
 	constructor(private _userService: UserService) { }
 
 	ngOnInit() {
-		this._userService.getUsers().subscribe(data => console.log(data));
+		this._userService.getUsers().subscribe(data => this.FillData(data));
+	}
+	FillData(data: any) {
+		this.userList = data;
+		console.log(this.userList);
 	}
 
 }

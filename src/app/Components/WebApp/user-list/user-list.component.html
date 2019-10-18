@@ -1,1 +1,24 @@
-<p>user-list works!</p>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Nickname</th>
+			<th scope="col">Years Old</th>
+			<th scope="col">Gender </th>
+			<th scope="col">Phone number </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of userList">
+			<th scope="row">{{item.id}} </th>
+			<td>{{item.name}}</td>
+			<td>{{item.lastName}}</td>
+			<td>{{item.nickName}}</td>
+			<td>{{item.yearsOld}}</td>
+			<td>{{item.gender}}</td>
+			<td>{{item.phoneNumber}}</td>
+		</tr>
+	</tbody>
+</table>
