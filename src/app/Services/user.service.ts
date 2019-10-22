@@ -16,9 +16,7 @@ export class UserService {
 		return this.http.get<IUser[]>(this._url);
 	}
 	addUser(user: IUser) {
-		let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-		return this.http.post(this._url, user, {headers});
+		return this.http.post(this._url, user);
 	}
 
 }
