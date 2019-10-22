@@ -7,14 +7,15 @@ import { IUser } from '../Model/user.interface';
 export class FilterPipe implements PipeTransform {
 
 	transform(Users: IUser[], arg: any): any {
-		const resultUser:IUser[] = [];
-
+		const resultUser: IUser[] = [];
 		for (const user of Users) {
-			if (user.name.toLowerCase().indexOf(arg.toLowerCase()) > -1)
+			if (user.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
+				user.lastName.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
+				user.yearsOld.toString().indexOf(arg) > -1)
 				resultUser.push(user);
 		}
-		
 		return resultUser;
 	}
-
 }
+
+
