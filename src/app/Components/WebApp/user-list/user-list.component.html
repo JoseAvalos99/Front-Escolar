@@ -1,5 +1,12 @@
-<input type="text" placeholder="Buscar" class="form-control mb-3" name="filterUser" id="filterUser" [(ngModel)]="filterUser" >
-
+<div class="row">
+	<div class="col-md-8">
+		<input type="text" placeholder="Buscar" class="form-control mb-3" name="filterUser" id="filterUser"
+			[(ngModel)]="filterUser">
+	</div>
+	<div class="col-md-4">
+		<a [routerLink]="[ '/user' ]" class="btn btn-outline-dark">Registar Usuario</a>
+	</div>
+</div>
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
