@@ -11,6 +11,7 @@ import { IUser } from 'src/app/Model/user.interface';
 export class UserListComponent implements OnInit {
 
 	public userList: IUser[] = [];
+	filterUser = '';
 
 	constructor(private _userService: UserService) { }
 

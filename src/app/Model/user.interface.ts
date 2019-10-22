@@ -1,9 +1,9 @@
 export interface IUser {
-	Id:number;
-	Name:string;
-	LastName:string;
-	NickName:string;
-	YearsOld:number;
-	Gender: number;
-	PhoneNumer:string;
+	id:number;
+	name:string;
+	lastName:string;
+	nickName:string;
+	yearsOld:number;
+	gender: number;
+	phoneNumer:string;
 }
