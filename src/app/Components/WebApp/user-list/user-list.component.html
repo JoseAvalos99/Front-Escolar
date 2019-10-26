@@ -14,20 +14,25 @@
 			<th scope="col">Nombre</th>
 			<th scope="col">Apellido</th>
 			<th scope="col">Nickname</th>
-			<th scope="col">Years Old</th>
-			<th scope="col">Gender </th>
-			<th scope="col">Phone number </th>
+			<th scope="col">Edad </th>
+			<th scope="col">Genero </th>
+			<th scope="col">Numero  </th>
+			<th scope="col">Editar </th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let item of userList | filter:filterUser">
-			<th scope="row">{{item.id}} </th>
+		<tr *ngFor="let item of userList | filter:filterUser; let i = index;">
+			<th scope="row">{{i}} </th>
 			<td>{{item.name}}</td>
 			<td>{{item.lastName}}</td>
 			<td>{{item.nickName}}</td>
 			<td>{{item.yearsOld}}</td>
 			<td>{{item.gender}}</td>
 			<td>{{item.phoneNumber}}</td>
+			<td>
+				<button type="button" class="btn btn-outline-danger mr-1" (click)="deleteUser(item.id, i)" >Eliminar</button>
+				<button type="button" class="btn btn-outline-success">Editar</button>
+			</td>
 		</tr>
 	</tbody>
 </table>

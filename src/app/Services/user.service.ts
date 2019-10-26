@@ -18,5 +18,9 @@ export class UserService {
 	addUser(user: IUser) {
 		return this.http.post(this._url, user);
 	}
+	deleteUser(Id:number){
+		this._url = this._url +'/'+Id;
+		return this.http.delete(this._url);
+	}
 
 }
