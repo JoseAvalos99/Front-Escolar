@@ -6,6 +6,7 @@ import { UserListComponent } from './Components/WebApp/user-list/user-list.compo
 
 const routes: Routes = [
   {path:'user', component:UserComponent},
+  {path:'user/:id', component:UserComponent},
   {path:'list', component:UserListComponent},
   {path:'', component:UserComponent}
 ];

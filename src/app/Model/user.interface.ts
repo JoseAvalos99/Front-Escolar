@@ -5,5 +5,5 @@ export interface IUser {
 	nickName:string;
 	yearsOld:number;
 	gender: number;
-	phoneNumer:string;
+	phoneNumber:string;
 }

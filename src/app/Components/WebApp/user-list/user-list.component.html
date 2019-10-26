@@ -22,7 +22,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let item of userList | filter:filterUser; let i = index;">
-			<th scope="row">{{i}} </th>
+			<th scope="row">{{i + 1}} </th>
 			<td>{{item.name}}</td>
 			<td>{{item.lastName}}</td>
 			<td>{{item.nickName}}</td>
@@ -31,7 +31,7 @@
 			<td>{{item.phoneNumber}}</td>
 			<td>
 				<button type="button" class="btn btn-outline-danger mr-1" (click)="deleteUser(item.id, i)" >Eliminar</button>
-				<button type="button" class="btn btn-outline-success">Editar</button>
+				<a [routerLink]="[ '/user/',item.id ]" class="btn btn-outline-success">Editar Usuario</a>
 			</td>
 		</tr>
 	</tbody>
