@@ -104,12 +104,14 @@ export class UserComponent implements OnInit {
       } else {
         this._userService.addUser(this.user).subscribe(
           data => {
+			this.onResetForm();
             Swal.fire({
               type: "success",
               title: "El usuario ha sido guardado correctamente",
               showConfirmButton: true,
               timer: 1500
-            });
+			});
+			
           },
           error => {
             Swal.fire({
