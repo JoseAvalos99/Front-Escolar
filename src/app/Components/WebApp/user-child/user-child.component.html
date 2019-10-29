@@ -1,1 +1,65 @@
-<input type="text" name="txtName" id="txtName" [(ngModel)]="txtName">
+<div class="form-group">
+	<form [formGroup]="UserFormFather" (ngSubmit)="onSaveform()">
+		<div class="form-group">
+			<input type="text" formControlName="Name" placeholder="Tu nombre" class="form-control" >
+			<div class="alert alert-danger" role="alert" *ngIf="name.invalid && (name.dirty || name.touched) ">
+				<div class="container-error-message" *ngIf="name.errors.required">
+					El nombre es requerido
+				</div>
+				<div class="container-error-message" *ngIf="name.errors.minlength">
+					El minimo requerido es 4
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="text" formControlName="LastName" placeholder="Tus apellidos" class="form-control">
+			<div class="alert alert-danger" role="alert" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) ">
+				<div class="container-error-message" *ngIf="lastName.errors.required">
+					El apellido es requerido
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="text" formControlName="NickName" placeholder="Tu Nickname" class="form-control">
+			<div class="alert alert-danger" role="alert" *ngIf="nickName.invalid && (nickName.dirty || nickName.touched) ">
+				<div class="container-error-message" *ngIf="nickName.errors.required">
+					El NickName es requerido
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="number" formControlName="YearsOld" class="form-control" placeholder="Tu edad">
+			<div class="alert alert-danger" role="alert" *ngIf="yearsOld.invalid && (yearsOld.dirty || yearsOld.touched) ">
+				<div class="container-error-message" *ngIf="yearsOld.errors.required">
+					La edad es requerida
+				</div>
+				<div class="container-error-message" *ngIf="yearsOld.errors.min">
+					Debes de ser mayor de 18
+				</div>
+				<div class="container-error-message" *ngIf="yearsOld.errors.max">
+					El maximo es de 99
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="text"formControlName="Gender" class="form-control" placeholder="Escribe tu genero">
+			<div class="alert alert-danger" role="alert" *ngIf="gender.invalid && (gender.dirty || gender.touched) ">
+				<div class="container-error-message" *ngIf="gender.errors.required">
+					El genero es requerido
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="text" formControlName="PhoneNumber" placeholder="Tu numero de telefono" class="form-control">
+			<div class="alert alert-danger" role="alert" *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched) ">
+				<div class="container-error-message" *ngIf="phoneNumber.errors.required">
+					El numero de telefono es requerido
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-outline-primary">
+			Enviar
+		</button>
+
+	</form>
+</div>

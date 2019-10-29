@@ -1,5 +1,39 @@
-<input type="text" name="nameChild" id="nameChild" [(ngModel)]="nameChild">
-<p>user-father works!</p>
-
-<app-user-child [name]="nameChild">
+<div class="row">
+	<div class="col-md-8">
+		<input type="text" placeholder="Buscar" class="form-control mb-3" name="filterUser" id="filterUser"
+			[(ngModel)]="filterUser">
+	</div>
+	<div class="col-md-4">
+		<a [routerLink]="[ '/user' ]" class="btn btn-outline-dark">Registar Usuario</a>
+	</div>
+</div>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Nickname</th>
+			<th scope="col">Edad </th>
+			<th scope="col">Genero </th>
+			<th scope="col">Numero </th>
+			<th scope="col">Editar </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of userList | filter:filterUser; let i = index;">
+			<th scope="row">{{i + 1}} </th>
+			<td>{{item.name}}</td>
+			<td>{{item.lastName}}</td>
+			<td>{{item.nickName}}</td>
+			<td>{{item.yearsOld}}</td>
+			<td>{{item.gender}}</td>
+			<td>{{item.phoneNumber}}</td>
+			<td>
+				<button type="button" class="btn btn-outline-success mr-1" (click)="editUser(item.id)">Editar</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<app-user-child [data]="UserForm" (OnSaveUser)="AddOrEditUser($event)" [Id]="id" >
 </app-user-child>
