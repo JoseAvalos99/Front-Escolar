@@ -3,6 +3,7 @@ import { UserService } from "src/app/Services/user.service";
 import { Observable } from "rxjs";
 import { IUser } from "src/app/Model/user.interface";
 import Swal from "sweetalert2";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-user-list",
@@ -13,18 +14,20 @@ export class UserListComponent implements OnInit {
   public userList: IUser[] = [];
   filterUser = "";
 
-  constructor(private _userService: UserService) {}
+  constructor(private _userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
-	this._userService.getUsers().subscribe(data =>{ 
-		this.FillData(data);
-		console.log(this.userList)
-	});
-	
+    this._userService.getUsers().subscribe(
+      data => {
+        this.userList = data;
+      }, error => {
+        this.toastr.error(error.error,'Error',{
+          timeOut: 8000
+        });
+      }
+    );
   }
-  FillData(data: any) {
-    this.userList = data;
-  }
+
   deleteUser(id: number, index: number) {
     Swal.fire({
       title: "¿Estas seguro de eliminarlo?",
@@ -39,5 +42,46 @@ export class UserListComponent implements OnInit {
         this._userService.deleteUser(id).subscribe(data => location.reload());
       }
     });
+  }
+  saveUser(user:IUser){
+    if(user.id){
+      this._userService.updateUser(user).subscribe(
+        data => {
+          Swal.fire({
+            type: "success",
+            title: "El usuario ha sido actualizado correctamente",
+            showConfirmButton: true,
+            timer: 1500
+          });
+        },
+        error => {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            text: "El servidor cree que algunos de tus datos estan mal!",
+            footer: "Verifica que todo este completo por favor"
+          });
+        }
+      );
+    }else {
+      this._userService.addUser(user).subscribe(
+        data => {
+          Swal.fire({
+            type: "success",
+            title: "El usuario ha sido guardado correctamente",
+            showConfirmButton: true,
+            timer: 1500
+          });
+        },
+        error => {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            text: "El servidor cree que algunos de tus datos estan mal!",
+            footer: "Verifica que todo este completo por favor"
+          });
+        }
+      );
+    }
   }
 }

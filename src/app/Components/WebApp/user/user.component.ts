@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "src/app/Services/user.service";
 import { IUser } from "src/app/Model/user.interface";
 import { ActivatedRoute } from "@angular/router";
 import Swal from "sweetalert2";
+
 
 @Component({
   selector: "app-user",
@@ -11,6 +12,9 @@ import Swal from "sweetalert2";
   styleUrls: ["./user.component.css"]
 })
 export class UserComponent implements OnInit {
+  @Input('data') UserFormFather: FormGroup;
+  @Output() OnSaveUser = new EventEmitter<IUser>();
+
   user: IUser = {
     id: 0,
     gender: 0,
@@ -55,7 +59,10 @@ export class UserComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
+  onSaveform(){
+    this.OnSaveUser.emit(this.UserFormFather.value);
+  }
   CreateFormGroup() {
     return new FormGroup({
       Name: new FormControl("", [Validators.required, Validators.minLength(4)]),
@@ -91,6 +98,7 @@ export class UserComponent implements OnInit {
               showConfirmButton: true,
               timer: 1500
             });
+            this.onResetForm();
           },
           error => {
             Swal.fire({
@@ -104,14 +112,13 @@ export class UserComponent implements OnInit {
       } else {
         this._userService.addUser(this.user).subscribe(
           data => {
-			this.onResetForm();
+            this.onResetForm();
             Swal.fire({
               type: "success",
               title: "El usuario ha sido guardado correctamente",
               showConfirmButton: true,
               timer: 1500
-			});
-			
+            });
           },
           error => {
             Swal.fire({
