@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/Services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { IUser } from 'src/app/Model/user.interface';
+import Swal from "sweetalert2";
 
 @Component({
 	selector: 'app-user-father',
@@ -47,6 +48,21 @@ export class UserFatherComponent implements OnInit {
 			)
 		}
 	}
+	deleteUser(id: number, index: number) {
+		Swal.fire({
+		  title: "¿Estas seguro de eliminarlo?",
+		  text: "No podras recuperar esta informacion",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#3085d6",
+		  cancelButtonColor: "#d33",
+		  confirmButtonText: "Eliminalo!"
+		}).then(result => {
+		  if (result.value) {
+			this._userService.deleteUser(id).subscribe(data => location.reload());
+		  }
+		});
+	  }
 	editUser(Id: number) {
 		this.id = Id;
 	}

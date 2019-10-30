@@ -31,6 +31,7 @@
 			<td>{{item.phoneNumber}}</td>
 			<td>
 				<button type="button" class="btn btn-outline-success mr-1" (click)="editUser(item.id)">Editar</button>
+				<button type="button" class="btn btn-outline-danger mr-1" (click)="deleteUser(item.id, i)" >Eliminar</button>
 			</td>
 		</tr>
 	</tbody>
